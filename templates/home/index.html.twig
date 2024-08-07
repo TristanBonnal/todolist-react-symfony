@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}TODOLIST{% endblock %}
 
 {% block body %}
-    <div {{ react_component('Hello', { fullName: 'You' }) }}>
-        Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
+    <div class="container mx-auto px-4 py-2">
+        <div {{ react_component('Todolist', { tasks: tasks }) }}>
+            Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
+        </div>
     </div>
 {% endblock %}

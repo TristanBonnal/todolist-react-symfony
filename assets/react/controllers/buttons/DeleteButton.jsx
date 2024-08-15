@@ -4,9 +4,8 @@ import MiniButton from "./MiniButton";
 
 export default function DeleteButton () {
     return (
-        <MiniButton
-            icon={<TrashIcon className="h-5 w-5 stroke-red-400"/>}
-            additionalClasses={'hover:bg-red-100 active:bg-red-200'}
-        />
+        <MiniButton additionalClasses={'hover:bg-red-100 active:bg-red-200'}>
+            <TrashIcon className="h-5 w-5 stroke-red-400"/>
+        </MiniButton>
     );
 }

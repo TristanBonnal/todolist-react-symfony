@@ -4,9 +4,8 @@ import MiniButton from "./MiniButton";
 
 export default function EditButton () {
     return (
-        <MiniButton
-            icon={<PencilIcon className="h-5 w-5 stroke-blue-400"/>}
-            additionalClasses={'hover:bg-blue-100 active:bg-blue-200'}
-        />
+        <MiniButton additionalClasses={'hover:bg-blue-100 active:bg-blue-200'}>
+            <PencilIcon className="h-5 w-5 stroke-blue-400"/>
+        </MiniButton>
     );
 }

@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
 import Task from './Task';
+import axios from "axios";
 export default function Todolist ({tasks}) {
     const [todos, setTodos] = useState(JSON.parse(tasks));
-    const handleDeleteTask = (id) => {
-        setTodos(todos.filter((todo) => todo.id !== parseInt(id)));
-    }
+    const handleDeleteTask = async (id) => {
+        try {
+            // Effectuer la requête DELETE à l'API
+            await axios.delete(`/api/tasks/${id}`);
+
+            // Si la suppression est réussie, mettre à jour l'état local
+            setTodos(todos.filter((todo) => todo.id !== id));
+        } catch (error) {
+            console.error("Erreur lors de la suppression de la tâche :", error);
+        }
+    };
 
     return (
         <div className="container mx-auto px-4">

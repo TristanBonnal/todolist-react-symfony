@@ -30,6 +30,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@heroicons/react": "^2.1.5"
+        "@heroicons/react": "^2.1.5",
+        "axios": "^1.7.4"
     }
 }

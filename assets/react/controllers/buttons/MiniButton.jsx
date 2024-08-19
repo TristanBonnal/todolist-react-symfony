@@ -1,8 +1,12 @@
 import React from "react";
 
-export default function MiniButton ({children, additionalClasses = ''}) {
+const defaultHandleClick = (e) => {
+    console.log(e.currentTarget + ' clicked');
+}
+
+export default function MiniButton ({children, onClick = defaultHandleClick, additionalClasses = ''}) {
     return (
-        <button className={'border py-1 px-1 rounded-md shadow ' + additionalClasses}>
+        <button onClick={onClick} className={'border py-1 px-1 rounded-md shadow hover:shadow-md ' + additionalClasses}>
             {children}
         </button>
     );

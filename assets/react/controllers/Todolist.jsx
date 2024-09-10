@@ -21,7 +21,7 @@ export default function Todolist ({tasks}) {
                 {todos.map((todo) => (
                     <Task
                         key={todo.id}
-                        task={todo}
+                        todo={todo}
                         onDelete={(e) => handleDeleteTask(e, todo.id)}
                     />)
                 )}

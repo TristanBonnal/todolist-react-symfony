@@ -4,7 +4,8 @@ import DeleteButton from "./buttons/DeleteButton";
 import EditButton from "./buttons/EditButton";
 import axios from "axios";
 
-export default function Task ({todo, onDelete}) {
+export default function Task ({todo, onEdit, onDelete}) {
+    console.log('render Task');
     const taskClassNames = 'flex justify-between items-center border border-gray-100 py-3 px-4 my-2 rounded-md shadow hover:border-blue-100';
     const inputRef = useRef(null);
     const [task, setTask] = useState(todo);
@@ -19,25 +20,15 @@ export default function Task ({todo, onDelete}) {
         });
     }
 
-    const handleOnSubmit = async (e) => {
+    const handleOnSubmit = async (e, task) => {
         e.preventDefault();
         inputRef.current.blur();
-        if (task.description === todo.description) {
-            return;
-        }
-
-        try {
-            await axios.put(e.target.action, {
-                description: task.description
-            });
-        } catch (error) {
-            console.error("Erreur lors de la mise à jour de la tâche :", error.message);
-        }
+        onEdit(e, task);
     }
 
     return (
         <li className={taskClassNames} data-id={task.id}>
-            <form className={"w-10/12"} action={`/api/tasks/${task.id}`} onSubmit={handleOnSubmit} >
+            <form className={"w-10/12"} action={`/api/tasks/${task.id}`} onSubmit={(e) => handleOnSubmit(e, task)} >
                 <input type="text"
                        value={task.description}
                        className="

@@ -1,10 +1,18 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import AddButton from './buttons/AddButton';
 import Task from './Task';
 import axios from "axios";
+import NewTask from "./NewTask";
 
 export default function Todolist({ tasks }) {
     console.log('render Todolist');
+
     const [todos, setTodos] = useState(JSON.parse(tasks));
+    const [newTaskIsVisible, setNewTaskIsVisible] = useState(false);
+
+    const handleAddTask = function (task) {
+        console.log(task)
+    };
 
     const handleEditTask = useCallback(async (e, task) => {
         // Trouver l'ancienne tâche dans l'état actuel
@@ -49,9 +57,13 @@ export default function Todolist({ tasks }) {
     }, [todos]);
 
     return (
-        <div className="container mx-auto px-4">
-            <h1 className="text-center text-blue-200 text-4xl">TODOLIST</h1>
-            <ul className="mx-auto w-2/3 mt-12">
+        <div className="container mx-auto w-2/3 px-4 flex flex-col items-center">
+            <h1 className="mb-5 text-center text-blue-200 text-4xl">TODOLIST</h1>
+            <AddButton onClick={() => setNewTaskIsVisible(true)} />
+            <ul className="mt-2 w-full">
+                {newTaskIsVisible && (
+                    <NewTask onAdd={handleAddTask} isVisible={newTaskIsVisible} onClickCancel={setNewTaskIsVisible}/>
+                )}
                 {todos.map((todo) => (
                     <Task
                         key={todo.id}
